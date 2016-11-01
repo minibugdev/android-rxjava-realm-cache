@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,8 +31,9 @@ class WeatherServiceModule(private val baseUrl: String) {
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
-        val client = OkHttpClient()
-        return client
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+        return OkHttpClient.Builder().addInterceptor(logging).build()
     }
 
     @Provides
