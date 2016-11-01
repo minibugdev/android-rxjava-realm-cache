@@ -55,7 +55,9 @@ class MainActivity : AppCompatActivity() {
         val cachedWeather = readFromRealm(CITY_NAME)
         if (cachedWeather != null) {
             // Merge with the observable from API
-            observable = observable.mergeWith(Observable.just(cachedWeather))
+            observable = observable
+                .mergeWith(Observable.just(cachedWeather))
+                .distinct()
         }
 
         // Subscription happens on Main Thread
