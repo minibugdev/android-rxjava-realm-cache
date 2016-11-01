@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RxRealmCache</string>
     <string name="base_url">http://api.openweathermap.org/data/2.5/</string>
+    <string name="api_key">YOUR API KEY</string>
 </resources>
